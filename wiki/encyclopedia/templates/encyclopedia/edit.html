@@ -1,0 +1,21 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Edit Entry
+{% endblock %}
+
+{% block body %}
+    {% if flag %}
+        <h1 style="color:red">Title cannot be blank!</h1>
+    {% endif %}
+    <h3>Title:</h3>
+    <form action="{% url 'edit' title %}" method="POST">
+        {% csrf_token %}
+        <input name="title" type="text" value="{{ title }}">
+        <hr>
+        <h3>Encyclopedia entry in Markdown format:</h3>
+        <textarea name="entry">{{entry}}</textarea>
+    </br>
+        <input class="button" type="submit" value="Save">
+    </form>
+{% endblock %}
